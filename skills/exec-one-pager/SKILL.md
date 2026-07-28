@@ -1,12 +1,9 @@
 ---
 name: exec-one-pager
 description: >-
-  Generate an English executive or startup one-pager as a .docx (problem, solution,
-  product, market, GTM, kill/go criteria, timeline). Use when the user asks for a
-  one-pager, one page summary, exec brief, pitch one-pager, investment one-pager,
-  or "create a one-pager on X" in English without Korean government-proposal framing.
-  Do not use for Korean 정부지원 사업 요약서 / 추진계획(안) / 1페이지 요약서 — that is the
-  gov-one-pager skill.
+  English executive or startup one-pager as .docx (problem, solution, product,
+  market, GTM, kill/go, timeline). For one-pager, exec brief, or pitch brief.
+  Not for Korean 정부지원 사업 요약서 (use gov-one-pager).
 license: Apache-2.0
 ---
 

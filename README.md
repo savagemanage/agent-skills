@@ -4,18 +4,28 @@ Open-source [Agent Skills](https://agentskills.io/) for Claude: folders of instr
 
 Copyright 2026 Janghoon Lee. **License:** [Apache-2.0](./LICENSE)
 
+[한국어 README](./README.ko.md)
+
 ## Skills
 
-| Skill | Use when | Output |
+| Skill | Use when | Claude.ai zip |
 | --- | --- | --- |
-| [gov-one-pager](./skills/gov-one-pager/) | Korean 정부지원 사업 요약서 / 추진계획(안) / 1페이지 요약서 | A4 `.docx` |
-| [exec-one-pager](./skills/exec-one-pager/) | English exec, pitch, or startup one-pager | Letter `.docx` |
+| [gov-one-pager](./skills/gov-one-pager/) | Korean government-style one-page project summary (grant / proposal table format) | [Download](./dist/gov-one-pager.zip) |
+| [exec-one-pager](./skills/exec-one-pager/) | English exec, pitch, or startup one-pager | [Download](./dist/exec-one-pager.zip) |
 
 These are different formats. Generic English “one-pager” → `exec-one-pager`. Korean government proposal table → `gov-one-pager`.
 
-## Install
+## Install on Claude.ai
 
-**Claude Code** — copy into the project:
+1. Download a skill zip from the table above (or from [`dist/`](./dist/)).
+2. Open [claude.ai](https://claude.com/) → **Settings** → **Capabilities** / **Skills** (wording varies) → **Upload skill**.
+3. Select the `.zip` file.
+
+Each zip already has the correct layout (`skill-name/SKILL.md` at the archive root). See [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).
+
+One-pager skills need Node.js and `docx` (`npm install docx`) when Claude generates the `.docx`.
+
+## Install in Claude Code
 
 ```bash
 mkdir -p .claude/skills
@@ -28,16 +38,13 @@ Or symlink everything:
 ln -s /path/to/claude-skills/skills/* .claude/skills/
 ```
 
-**Claude.ai** — zip a skill folder and upload as a custom skill ([docs](https://support.claude.com/en/articles/12512180-using-skills-in-claude)).
-
-Both one-pager skills need Node.js and `docx` (`npm install docx`) when generating the file.
-
 ## Add a skill
 
 1. Copy [`template/`](./template/) to `skills/<name>/`
-2. Set `name` + `description` (what + when), write instructions
-3. Update the table above
-4. See [CONTRIBUTING.md](./CONTRIBUTING.md)
+2. Set `name` + `description` (what + when; keep description ≤ **200** characters for Claude.ai)
+3. Run `python scripts/package-skills.py` (or `bash scripts/package-skills.sh`) to refresh `dist/<name>.zip`
+4. Update the skills table in this README and in [`README.ko.md`](./README.ko.md)
+5. See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ## Links
 

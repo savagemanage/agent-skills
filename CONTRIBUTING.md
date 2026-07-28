@@ -8,6 +8,7 @@ Thanks for helping grow this collection of Claude Agent Skills.
 - One skill per PR when possible.
 - Keep `SKILL.md` concise (ideally under 500 lines). Put deep detail in `references/`.
 - Do not put secrets, private company data, or real PII in sample `DATA` or examples.
+- **Always** keep `README.ko.md` in sync when changing `README.md`.
 
 ## Add a skill
 
@@ -17,17 +18,20 @@ Thanks for helping grow this collection of Claude Agent Skills.
    - `description`: third person; include **what** the skill does and **when** Claude should use it (max 1024 chars).
    - Optional: `license: Apache-2.0`
 3. Add optional `scripts/`, `references/`, or `assets/` only if the agent needs them.
-4. Update the skills table in `README.md`.
+4. Update the skills table in `README.md` **and** `README.ko.md` (English vs Korean), then run `python scripts/package-skills.py` so `dist/` has a downloadable zip.
 5. Open a pull request with a short summary of when the skill should trigger.
 
 ## Skill quality checklist
 
 - [ ] Description includes trigger phrases a user might actually say
+- [ ] Description is ≤ **200** characters (Claude.ai upload limit; Agent Skills allows 1024)
 - [ ] Instructions are step-by-step and actionable
 - [ ] Sample data (if any) is clearly fictional
 - [ ] Scripts declare dependencies and how to run them
 - [ ] Paths use forward slashes (`scripts/foo.js`, not `scripts\foo.js`)
 - [ ] No README inside the skill folder (repo-level README only)
+- [ ] `README.md` and `README.ko.md` both updated if docs changed
+- [ ] Ran `python scripts/package-skills.py` so `dist/<name>.zip` is up to date
 
 ## Improve an existing skill
 

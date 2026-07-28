@@ -1,12 +1,9 @@
 ---
 name: gov-one-pager
 description: >-
-  Generate a Korean government-style one-page summary report (정부지원 사업 요약서 /
-  1페이지 보고서 / 추진계획(안)) as a docx file. Use for 사업계획서, 정부지원 사업 요약서,
-  신사업·정책 제안 one-pagers, or when the user says "1페이지 요약서로 만들어줘" /
-  "이 형식으로 보고서 만들어줘". Also use for English requests that explicitly want the
-  Korean government or corporate proposal table format. Do not use for generic English
-  "create a one-pager" / exec brief / pitch one-pager — that is the exec-one-pager skill.
+  Korean government-style A4 one-page summary (정부지원 사업 요약서, 추진계획(안),
+  사업계획서, 1페이지 요약서) as .docx. Not for generic English exec/pitch one-pagers
+  (use exec-one-pager).
 license: Apache-2.0
 ---
 
@@ -20,8 +17,10 @@ license: Apache-2.0
 
 ## 언제 쓰는가
 
-- 사용자가 새 주제로 1페이지 요약서를 요청할 때 (예: "이 주제로 1페이지 요약서 만들어줘")
+- 사용자가 새 주제로 1페이지 요약서를 요청할 때 (예: "이 주제로 1페이지 요약서 만들어줘", "이 형식으로 보고서 만들어줘")
 - 사업명, 문제점, 해결방안, 시장규모, 성공/중단 기준 등을 채워 정부지원 사업 요약서를 만들 때
+- 영문이라도 한국 정부·기업 제안용 표 양식을 명시하면 이 스킬을 쓴다
+- 일반 영문 exec/pitch one-pager는 `exec-one-pager`로 보낸다
 - 스크립트에 내장된 샘플과 동일한 표/스타일 구조를 다른 주제에 재사용할 때
 
 ## 빠른 실행 절차
