@@ -2,7 +2,7 @@
 
 Open-source [Agent Skills](https://agentskills.io/) for Claude: folders of instructions and scripts that Claude loads when a task matches.
 
-Copyright 2026 Janghoon Lee. **License:** [Apache-2.0](./LICENSE)
+Copyright 2026 Janghoon Lee (이장훈). **License:** [Apache-2.0](./LICENSE)
 
 [한국어 README](./README.ko.md)
 
@@ -12,8 +12,9 @@ Copyright 2026 Janghoon Lee. **License:** [Apache-2.0](./LICENSE)
 | --- | --- | --- |
 | [gov-one-pager](./skills/gov-one-pager/) | Korean government-style one-page project summary (grant / proposal table format) | [Download](./dist/gov-one-pager.zip) |
 | [exec-one-pager](./skills/exec-one-pager/) | English exec, pitch, or startup one-pager | [Download](./dist/exec-one-pager.zip) |
+| [voice](./skills/voice/) | Janghoon Lee Korean voice for docs, Slack, email, PDF | [Download](./dist/voice.zip) |
 
-These are different formats. Generic English “one-pager” → `exec-one-pager`. Korean government proposal table → `gov-one-pager`.
+These are different formats. Generic English “one-pager” → `exec-one-pager`. Korean government proposal table → `gov-one-pager`. Korean business tone → `voice`.
 
 ## Install on Claude.ai
 
@@ -29,7 +30,7 @@ One-pager skills need Node.js and `docx` (`npm install docx`) when Claude genera
 
 ```bash
 mkdir -p .claude/skills
-cp -r skills/gov-one-pager skills/exec-one-pager .claude/skills/
+cp -r skills/gov-one-pager skills/exec-one-pager skills/voice .claude/skills/
 ```
 
 Or symlink everything:

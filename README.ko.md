@@ -2,7 +2,7 @@
 
 Claude용 오픈소스 [Agent Skills](https://agentskills.io/) 모음입니다. 작업에 맞을 때 Claude가 불러오는 지침·스크립트 폴더입니다.
 
-Copyright 2026 Janghoon Lee. **라이선스:** [Apache-2.0](./LICENSE)
+Copyright 2026 이장훈 (Janghoon Lee). **라이선스:** [Apache-2.0](./LICENSE)
 
 [English README](./README.md)
 
@@ -12,8 +12,9 @@ Copyright 2026 Janghoon Lee. **라이선스:** [Apache-2.0](./LICENSE)
 | --- | --- | --- |
 | [gov-one-pager](./skills/gov-one-pager/) | 정부지원 사업 요약서 / 추진계획(안) / 1페이지 요약서 | [다운로드](./dist/gov-one-pager.zip) |
 | [exec-one-pager](./skills/exec-one-pager/) | 영문 경영·피치·스타트업 원페이저 | [다운로드](./dist/exec-one-pager.zip) |
+| [voice](./skills/voice/) | 문서·슬랙·이메일·PDF용 이장훈 말투 | [다운로드](./dist/voice.zip) |
 
-형식이 다릅니다. 일반 영문 “one-pager” → `exec-one-pager`. 한국 정부·제안 표 양식 → `gov-one-pager`.
+형식이 다릅니다. 일반 영문 “one-pager” → `exec-one-pager`. 한국 정부·제안 표 양식 → `gov-one-pager`. 한국어 비즈니스 말투 → `voice`.
 
 ## Claude.ai에 설치
 
@@ -29,7 +30,7 @@ zip은 Claude.ai가 요구하는 구조(`skill-name/SKILL.md`가 압축 루트)�
 
 ```bash
 mkdir -p .claude/skills
-cp -r skills/gov-one-pager skills/exec-one-pager .claude/skills/
+cp -r skills/gov-one-pager skills/exec-one-pager skills/voice .claude/skills/
 ```
 
 또는 전체 심볼릭 링크:
