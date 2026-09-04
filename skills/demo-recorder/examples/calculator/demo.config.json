@@ -1,0 +1,38 @@
+{
+  "name": "calculator",
+  "launch": {
+    "command": "node server.mjs 4600",
+    "cwd": ".",
+    "readyLog": "listening on",
+    "timeoutMs": 15000
+  },
+  "baseUrl": "http://127.0.0.1:4600",
+  "viewport": { "width": 1280, "height": 720 },
+  "stepDelayMs": 800,
+  "slowMo": 300,
+  "showCursor": true,
+  "review": {
+    "ignoreConsole": [],
+    "ignoreNetwork": ["404 GET .*/favicon\\.ico"]
+  },
+  "scenario": [
+    { "action": "goto", "url": "/" },
+    { "action": "expectText", "selector": "#display", "text": "0" },
+    { "action": "click", "selector": "#key-7" },
+    { "action": "click", "selector": "#op-add" },
+    { "action": "click", "selector": "#key-8" },
+    { "action": "click", "selector": "#key-equals" },
+    { "action": "expectText", "selector": "#display", "text": "15" },
+    { "action": "screenshot", "label": "7-plus-8-equals-15" },
+    { "action": "click", "selector": "#key-clear" },
+    { "action": "expectText", "selector": "#display", "text": "0" },
+    { "action": "click", "selector": "#key-6" },
+    { "action": "click", "selector": "#op-multiply" },
+    { "action": "click", "selector": "#key-9" },
+    { "action": "click", "selector": "#key-equals" },
+    { "action": "expectText", "selector": "#display", "text": "54" },
+    { "action": "screenshot", "label": "6-times-9-equals-54" },
+    { "action": "expectVisible", "selector": "#display" },
+    { "action": "snapshot", "label": "final-state" }
+  ]
+}
