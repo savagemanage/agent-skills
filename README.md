@@ -1,6 +1,6 @@
-# Claude Skills
+# Agent Skills
 
-Open-source [Agent Skills](https://agentskills.io/) for Claude: folders of instructions and scripts that Claude loads when a task matches.
+Open-source [Agent Skills](https://agentskills.io/): folders of instructions and scripts that a compatible agent tool loads when a task matches. Agent Skills is an open standard, so these work across coding agents such as Kiro, Claude Code, and opencode. Some skills ship as Claude.ai upload zips; per-skill install paths are below.
 
 Copyright 2026 Janghoon Lee (이장훈). **License:** [Apache-2.0](./LICENSE)
 
@@ -17,7 +17,11 @@ Copyright 2026 Janghoon Lee (이장훈). **License:** [Apache-2.0](./LICENSE)
 
 These are different formats. Generic English “one-pager” → `exec-one-pager`. Korean government proposal table → `gov-one-pager`. Korean business tone → `voice`. Recorded UI demo video / click-through check → `demo-recorder`.
 
-## Install on Claude.ai
+## Install
+
+Depending on your tool, pick an install target below: upload the zip to Claude.ai, or drop the skill folder where your agent discovers it (Claude Code, Kiro, opencode).
+
+### On Claude.ai
 
 1. Download a skill zip from the table above (or from [`dist/`](./dist/)).
 2. Open [claude.ai](https://claude.com/) → **Settings** → **Capabilities** / **Skills** (wording varies) → **Upload skill**.
@@ -27,7 +31,9 @@ Each zip already has the correct layout (`skill-name/SKILL.md` at the archive ro
 
 One-pager skills need Node.js and `docx` (`npm install docx`) when Claude generates the `.docx`.
 
-## Install in Claude Code
+### In a coding agent (Claude Code, Kiro, opencode)
+
+The same skill folders work across tools; only the discovery directory differs. For Claude Code, copy them into `.claude/skills`:
 
 ```bash
 mkdir -p .claude/skills
@@ -39,6 +45,8 @@ Or symlink everything:
 ```bash
 ln -s /path/to/claude-skills/skills/* .claude/skills/
 ```
+
+Other tools read from their own directory: Kiro uses `.kiro/skills`, opencode uses `.opencode/skills` (and also reads `.claude/skills` and `.agents/skills`). Use the matching path (for example `.kiro/skills`) instead of `.claude/skills`. The `demo-recorder` skill also bundles a cross-tool installer that writes into all of these at once (see below).
 
 ## Install demo-recorder
 
