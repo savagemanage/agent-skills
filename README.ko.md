@@ -11,7 +11,6 @@
 - [사용법](#사용법)
   - [Claude.ai (zip 업로드)](#claudeai-zip-업로드)
   - [코딩 에이전트 (Claude Code, Kiro, opencode)](#코딩-에이전트-claude-code-kiro-opencode)
-- [demo-recorder 설정](#demo-recorder-설정)
 - [기여하기](#기여하기)
 - [링크](#링크)
 - [라이선스](#라이선스)
@@ -33,7 +32,7 @@
 
 - 브라우저에서 Claude.ai를 쓰나요? 스킬 zip을 업로드하세요([Claude.ai (zip 업로드)](#claudeai-zip-업로드) 참고).
 - 코딩 에이전트(Claude Code, Kiro, opencode)를 쓰나요? 에이전트가 인식하는 위치에 스킬 폴더를 두세요([코딩 에이전트](#코딩-에이전트-claude-code-kiro-opencode) 참고).
-- `demo-recorder` 스킬을 원하나요? 실제 브라우저를 구동하므로 몇 단계가 더 필요합니다([demo-recorder 설정](#demo-recorder-설정) 참고).
+- `demo-recorder` 스킬을 원하나요? 실제 브라우저를 구동하므로 몇 단계가 더 필요합니다. 해당 스킬의 [SKILL.md](./skills/demo-recorder/SKILL.md)를 참고하세요.
 
 ## 사용법
 
@@ -62,64 +61,7 @@ cp -r skills/gov-one-pager skills/exec-one-pager skills/voice .claude/skills/
 ln -s /path/to/claude-skills/skills/* .claude/skills/
 ```
 
-다른 도구는 각자의 디렉터리에서 읽습니다. Kiro는 `.kiro/skills`, opencode는 `.opencode/skills`를 사용합니다(opencode는 `.claude/skills`와 `.agents/skills`도 읽습니다). `.claude/skills` 대신 해당 도구에 맞는 경로(예: `.kiro/skills`)를 쓰세요. `demo-recorder` 스킬에는 이 위치들에 한 번에 설치하는 크로스툴 설치기가 포함되어 있습니다([demo-recorder 설정](#demo-recorder-설정) 참고).
-
-## demo-recorder 설정
-
-`demo-recorder`는 실제 브라우저를 구동하므로 폴더 복사 외에 몇 단계가 더 필요합니다.
-
-**사전 준비물:** Node.js 18+ (22 권장). 시스템 `ffmpeg`는 필요 없습니다. 스킬이 `ffmpeg-static`으로 자체 포함합니다.
-
-1. 사용하는 도구가 인식하는 위치에 스킬을 둡니다(하나 선택):
-
-   ```bash
-   # Claude Code (프로젝트 로컬)
-   mkdir -p .claude/skills
-   cp -r skills/demo-recorder .claude/skills/
-
-   # 또는 심볼릭 링크
-   ln -s "$(pwd)/skills/demo-recorder" .claude/skills/demo-recorder
-
-   # 또는 내장 크로스툴 설치기 사용 (Kiro / Claude Code / opencode)
-   node skills/demo-recorder/scripts/install-skill.mjs            # ./.kiro ./.claude ./.opencode 에 심볼릭 링크
-   node skills/demo-recorder/scripts/install-skill.mjs --global   # ~/.kiro ~/.claude ~/.config/opencode 에 설치
-   ```
-
-2. 스킬 폴더에서 런타임 의존성을 한 번 설치합니다:
-
-   ```bash
-   cd skills/demo-recorder
-   npm install
-   ```
-
-3. Playwright용 Chromium 브라우저를 한 번 설치합니다:
-
-   ```bash
-   npx playwright install chromium
-   ```
-
-   브라우저를 공용·사전 프로비저닝 디렉터리에 두는 환경이라면, 새로 내려받지 말고 그 위치를 가리키게 합니다:
-
-   ```bash
-   export PLAYWRIGHT_BROWSERS_PATH=/opt/playwright   # 실행 전마다 설정
-   ```
-
-4. 데모를 녹화합니다(내장 계산기 예제):
-
-   ```bash
-   cd skills/demo-recorder
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json
-   node scripts/review.mjs                     # review-report.md 작성, PASS/FAIL 출력
-   ```
-
-   명령줄에서 속도를 늦추거나 커서를 숨길 수 있습니다:
-
-   ```bash
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json --slow 1200 --slow-mo 400
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json --no-cursor
-   ```
-
-결과 영상은 실행 디렉터리의 `video/` 아래 `demo.mp4`(H.264)이며, `demo.webm`은 원본 녹화로 보관됩니다. 런타임 산출물은 기본적으로 `.demo-recorder/artifacts/`에 저장됩니다(`DEMO_RECORDER_ARTIFACTS_ROOT`로 변경 가능).
+다른 도구는 각자의 디렉터리에서 읽습니다. Kiro는 `.kiro/skills`, opencode는 `.opencode/skills`를 사용합니다(opencode는 `.claude/skills`와 `.agents/skills`도 읽습니다). `.claude/skills` 대신 해당 도구에 맞는 경로(예: `.kiro/skills`)를 쓰세요. `demo-recorder` 스킬에는 이 위치들에 한 번에 설치하는 크로스툴 설치기가 포함되어 있습니다. 해당 스킬의 [SKILL.md](./skills/demo-recorder/SKILL.md)를 참고하세요.
 
 ## 기여하기
 
