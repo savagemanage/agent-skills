@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Calculator</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 320px; margin: 40px auto; padding: 0 16px; }
+    h1 { font-size: 20px; }
+    #display {
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 28px;
+      text-align: right;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f7f7f7;
+    }
+    .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    button {
+      padding: 16px 0;
+      font-size: 18px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fff;
+    }
+    button:hover { background: #eee; }
+    button.op { background: #eef; }
+    button.equals { background: #dfe; grid-column: span 2; }
+  </style>
+</head>
+<body>
+  <h1>Demo Calculator</h1>
+  <div id="display" aria-label="Display">0</div>
+  <div class="keys">
+    <button id="key-7" data-digit="7">7</button>
+    <button id="key-8" data-digit="8">8</button>
+    <button id="key-9" data-digit="9">9</button>
+    <button id="op-divide" class="op" data-op="/">&divide;</button>
+
+    <button id="key-4" data-digit="4">4</button>
+    <button id="key-5" data-digit="5">5</button>
+    <button id="key-6" data-digit="6">6</button>
+    <button id="op-multiply" class="op" data-op="*">&times;</button>
+
+    <button id="key-1" data-digit="1">1</button>
+    <button id="key-2" data-digit="2">2</button>
+    <button id="key-3" data-digit="3">3</button>
+    <button id="op-subtract" class="op" data-op="-">&minus;</button>
+
+    <button id="key-0" data-digit="0">0</button>
+    <button id="key-clear" data-action="clear">C</button>
+    <button id="op-add" class="op" data-op="+">+</button>
+    <button id="key-equals" class="equals" data-action="equals">=</button>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
