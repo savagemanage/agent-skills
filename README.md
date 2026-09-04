@@ -11,7 +11,6 @@ A small, open-source collection of [Agent Skills](https://agentskills.io/): fold
 - [Usage](#usage)
   - [Claude.ai (zip upload)](#claudeai-zip-upload)
   - [Coding agents (Claude Code, Kiro, opencode)](#coding-agents-claude-code-kiro-opencode)
-- [demo-recorder setup](#demo-recorder-setup)
 - [Contributing](#contributing)
 - [Links](#links)
 - [License](#license)
@@ -33,7 +32,7 @@ Each skill is a self-contained folder under [`skills/`](./skills/). There is not
 
 - Using Claude.ai in the browser? Upload the skill zip (see [Claude.ai (zip upload)](#claudeai-zip-upload)).
 - Using a coding agent (Claude Code, Kiro, opencode)? Drop the skill folder where the agent discovers it (see [Coding agents](#coding-agents-claude-code-kiro-opencode)).
-- Want the `demo-recorder` skill? It drives a real browser and needs a few extra steps (see [demo-recorder setup](#demo-recorder-setup)).
+- Want the `demo-recorder` skill? It drives a real browser and needs a few extra steps; see its [SKILL.md](./skills/demo-recorder/SKILL.md).
 
 ## Usage
 
@@ -62,64 +61,7 @@ Or symlink everything:
 ln -s /path/to/claude-skills/skills/* .claude/skills/
 ```
 
-Other tools read from their own directory: Kiro uses `.kiro/skills`, opencode uses `.opencode/skills` (and also reads `.claude/skills` and `.agents/skills`). Use the matching path (for example `.kiro/skills`) instead of `.claude/skills`. The `demo-recorder` skill also bundles a cross-tool installer that writes into all of these at once (see [demo-recorder setup](#demo-recorder-setup)).
-
-## demo-recorder setup
-
-`demo-recorder` runs a real browser, so it needs a couple of extra steps beyond copying the folder.
-
-**Prerequisites:** Node.js 18+ (22 recommended). No system `ffmpeg` is needed; the skill bundles one via `ffmpeg-static`.
-
-1. Put the skill where your tool discovers it (pick one):
-
-   ```bash
-   # Claude Code (project-local)
-   mkdir -p .claude/skills
-   cp -r skills/demo-recorder .claude/skills/
-
-   # or symlink it
-   ln -s "$(pwd)/skills/demo-recorder" .claude/skills/demo-recorder
-
-   # or use the built-in cross-tool installer (Kiro / Claude Code / opencode)
-   node skills/demo-recorder/scripts/install-skill.mjs            # symlink into ./.kiro ./.claude ./.opencode
-   node skills/demo-recorder/scripts/install-skill.mjs --global   # into ~/.kiro ~/.claude ~/.config/opencode
-   ```
-
-2. Install the runtime dependencies once, in the skill folder:
-
-   ```bash
-   cd skills/demo-recorder
-   npm install
-   ```
-
-3. Install a Chromium browser for Playwright once:
-
-   ```bash
-   npx playwright install chromium
-   ```
-
-   If your machine keeps browsers in a shared, pre-provisioned directory, point Playwright at it instead of downloading a new one:
-
-   ```bash
-   export PLAYWRIGHT_BROWSERS_PATH=/opt/playwright   # set this before every run
-   ```
-
-4. Record a demo (the bundled calculator example):
-
-   ```bash
-   cd skills/demo-recorder
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json
-   node scripts/review.mjs                     # writes review-report.md, prints PASS/FAIL
-   ```
-
-   Slow it down or hide the cursor from the command line:
-
-   ```bash
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json --slow 1200 --slow-mo 400
-   node scripts/demo-run.mjs --config examples/calculator/demo.config.json --no-cursor
-   ```
-
-The deliverable video is `demo.mp4` (H.264) under the run's `video/` directory; `demo.webm` is kept as the source recording. Runtime output lands in `.demo-recorder/artifacts/` by default (override with `DEMO_RECORDER_ARTIFACTS_ROOT`).
+Other tools read from their own directory: Kiro uses `.kiro/skills`, opencode uses `.opencode/skills` (and also reads `.claude/skills` and `.agents/skills`). Use the matching path (for example `.kiro/skills`) instead of `.claude/skills`. The `demo-recorder` skill also bundles a cross-tool installer that writes into all of these at once; see its [SKILL.md](./skills/demo-recorder/SKILL.md).
 
 ## Contributing
 

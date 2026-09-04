@@ -1,6 +1,6 @@
 // smoke.test.mjs — end-to-end integration test for the demo-recorder engine.
 //
-// Runs demo-run.mjs against the bundled todo-app example as a subprocess, then
+// Runs demo-run.mjs against the bundled calculator example as a subprocess, then
 // asserts that a REAL WebM video was produced (verified by the EBML/WebM magic
 // bytes, not just the extension), that the action log parses with the expected
 // number of step records, and that review.mjs yields a PASS verdict.
@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const SKILL_DIR = path.resolve(path.dirname(__filename), '..');
-const CONFIG = path.join(SKILL_DIR, 'examples', 'todo-app', 'demo.config.json');
+const CONFIG = path.join(SKILL_DIR, 'examples', 'calculator', 'demo.config.json');
 
 // Pin the artifacts root for this test so the subprocess and this process agree
 // regardless of cwd (the default artifacts root is cwd-relative). Passed to the
