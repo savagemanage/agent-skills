@@ -1,6 +1,6 @@
-# Claude Skills
+# Agent Skills
 
-Claude용 오픈소스 [Agent Skills](https://agentskills.io/) 모음입니다. 작업에 맞을 때 Claude가 불러오는 지침·스크립트 폴더입니다.
+오픈소스 [Agent Skills](https://agentskills.io/) 모음입니다. 작업에 맞을 때 호환 에이전트 도구가 불러오는 지침·스크립트 폴더입니다. Agent Skills는 오픈 표준이라 Kiro, Claude Code, opencode 같은 여러 코딩 에이전트에서 사용할 수 있습니다. 일부 스킬은 Claude.ai 업로드 zip으로 제공되며, 스킬별 설치 경로는 아래에 있습니다.
 
 Copyright 2026 이장훈 (Janghoon Lee). **라이선스:** [Apache-2.0](./LICENSE)
 
@@ -17,7 +17,11 @@ Copyright 2026 이장훈 (Janghoon Lee). **라이선스:** [Apache-2.0](./LICENS
 
 형식이 다릅니다. 일반 영문 “one-pager” → `exec-one-pager`. 한국 정부·제안 표 양식 → `gov-one-pager`. 한국어 비즈니스 말투 → `voice`. UI 데모 영상 녹화 / 클릭 흐름 확인 → `demo-recorder`.
 
-## Claude.ai에 설치
+## 설치
+
+사용하는 도구에 따라 아래 설치 대상 중 하나를 고르세요. Claude.ai에 zip을 업로드하거나, 에이전트가 인식하는 위치(Claude Code, Kiro, opencode)에 스킬 폴더를 두면 됩니다.
+
+### Claude.ai에 설치
 
 1. 위 표(또는 [`dist/`](./dist/))에서 스킬 zip을 받습니다.
 2. [claude.ai](https://claude.com/) → **Settings** → **Capabilities** / **Skills** → **Upload skill**.
@@ -27,7 +31,9 @@ zip은 Claude.ai가 요구하는 구조(`skill-name/SKILL.md`가 압축 루트)�
 
 원페이저 스킬로 `.docx`를 만들 때는 Node.js와 `docx`(`npm install docx`)가 필요합니다.
 
-## Claude Code에 설치
+### 코딩 에이전트에 설치 (Claude Code, Kiro, opencode)
+
+같은 스킬 폴더가 여러 도구에서 동작하며, 인식 디렉터리만 다릅니다. Claude Code는 `.claude/skills`에 복사합니다:
 
 ```bash
 mkdir -p .claude/skills
@@ -39,6 +45,8 @@ cp -r skills/gov-one-pager skills/exec-one-pager skills/voice .claude/skills/
 ```bash
 ln -s /path/to/claude-skills/skills/* .claude/skills/
 ```
+
+다른 도구는 각자의 디렉터리에서 읽습니다. Kiro는 `.kiro/skills`, opencode는 `.opencode/skills`를 사용합니다(opencode는 `.claude/skills`와 `.agents/skills`도 읽습니다). `.claude/skills` 대신 해당 도구에 맞는 경로(예: `.kiro/skills`)를 쓰세요. `demo-recorder` 스킬에는 이 위치들에 한 번에 설치하는 크로스툴 설치기가 포함되어 있습니다(아래 참고).
 
 ## demo-recorder 설치
 
